@@ -3,6 +3,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by Shangwen on 2018/4/30.
  * Implementation of a generic binary search tree.
+ * Code adpated from https://algs4.cs.princeton.edu/32bst/BST.java.html
  * Learn to write javadoc.
  */
 public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
@@ -12,7 +13,7 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
             private Key key;
             private Value val;
             private Node left, right;
-            private int size;    // number of nodes in subtree
+            pprivate int size;    // number of nodes in subtree
 
             public Node(Key key, Value val, int size) {
                 this.key = key;
@@ -215,19 +216,82 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
         if (t != null) return t;
         else return x;
     }
+
+    /**
+     * Returns the smallest key in the symbol table greater than or equal to {@code key}.
+     *
+     * @param key the key
+     * @return the smallest key in the symbol table greater than or equal to {@code key}
+     * @throws NoSuchElementException if there is no such key
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
     @Override
     public Key ceiling(Key key) {
-        return null;
+        if (key == null) throw new IllegalArgumentException("argument to ceiling() is null");
+        if (isEmpty()) throw new NoSuchElementException("calls ceiling() with empty symbol table");
+        Node x = ceiling(root, key);
+        if (x == null) return null;
+        else return x.key;
     }
 
+    private Node ceiling(Node x, Key key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+        if (cmp == 0) return x;
+        if (cmp < 0) {
+            Node t = ceiling(x.left, key);
+            if (t != null) return t;
+            else return x;
+        }
+        return ceiling(x.right, key);
+    }
+
+    /**
+     * Return the number of keys in the symbol table strictly less than {@code key}.
+     *
+     * @param key the key
+     * @return the number of keys in the symbol table strictly less than {@code key}
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
     @Override
     public int rank(Key key) {
-        return 0;
+        if (key == null) throw new IllegalArgumentException("argument to rank() is null");
+        return rank(key, root);
     }
 
+    // Number of keys in the subtree less than key.
+    private int rank(Key key, Node x) {
+        if (x == null) return 0;
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) return rank(key, x.left);
+        else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
+        else return size(x.left);
+    }
+
+    /**
+     * Return the key in the symbol table whose rank is {@code k}.
+     * This is the (k+1)st smallest key in the symbol table.
+     *
+     * @param k the order statistic
+     * @return the key in the symbol table of rank {@code k}
+     * @throws IllegalArgumentException unless {@code k} is between 0 and n-1
+     */
     @Override
     public Key select(int k) {
-        return null;
+        if (k < 0 || k >= size()) {
+            throw new IllegalArgumentException("argument to select() is invalid: " + k);
+        }
+        Node x = select(root, k);
+        return x.key;
+    }
+
+    // Return key of rank k
+    private Node select(Node x, int k) {
+        if (x == null) return null;
+        int t = size(x.left);
+        if (t > k) return select(x.left, k);
+        else if (t < k) return select(x.right, t-k-1);
+        else return x;
     }
 
     /**
