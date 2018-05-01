@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="31e5581c-665c-4926-b2dd-da711d76689d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BST.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ST.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ST.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +39,8 @@
       <file leaf-file-name="BST.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BST.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="745">
-              <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+            <state relative-caret-position="799">
+              <caret line="215" column="22" selection-start-line="215" selection-start-column="22" selection-end-line="215" selection-end-column="22" />
               <folding>
                 <element signature="e#2082#2083#0" expanded="true" />
                 <element signature="e#2119#2120#0" expanded="true" />
@@ -50,12 +48,6 @@
                 <element signature="e#3290#3291#0" expanded="true" />
                 <element signature="e#3471#3472#0" expanded="true" />
                 <element signature="e#3504#3505#0" expanded="true" />
-                <element signature="e#3698#3699#0" expanded="true" />
-                <element signature="e#3725#3726#0" expanded="true" />
-                <element signature="e#3763#3764#0" expanded="true" />
-                <element signature="e#3790#3791#0" expanded="true" />
-                <element signature="e#3837#3838#0" expanded="true" />
-                <element signature="e#3864#3865#0" expanded="true" />
                 <element signature="e#3913#3914#0" expanded="true" />
                 <element signature="e#3940#3941#0" expanded="true" />
                 <element signature="e#3986#3987#0" expanded="true" />
@@ -105,7 +97,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="1591" />
     <option name="width" value="1298" />
     <option name="height" value="1036" />
@@ -526,12 +518,12 @@
       <workItem from="1525186429462" duration="157000" />
       <workItem from="1525186983516" duration="49000" />
       <workItem from="1525187441362" duration="111000" />
-      <workItem from="1525187598782" duration="6379000" />
+      <workItem from="1525187598782" duration="8345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15278000" />
+    <option name="totallyTimeSpent" value="17244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1591" y="0" width="1298" height="1036" extended-state="0" />
@@ -602,12 +594,6 @@
             <element signature="e#3290#3291#0" expanded="true" />
             <element signature="e#3471#3472#0" expanded="true" />
             <element signature="e#3504#3505#0" expanded="true" />
-            <element signature="e#3698#3699#0" expanded="true" />
-            <element signature="e#3725#3726#0" expanded="true" />
-            <element signature="e#3763#3764#0" expanded="true" />
-            <element signature="e#3790#3791#0" expanded="true" />
-            <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#3864#3865#0" expanded="true" />
             <element signature="e#3913#3914#0" expanded="true" />
             <element signature="e#3940#3941#0" expanded="true" />
             <element signature="e#3986#3987#0" expanded="true" />
@@ -742,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BST.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="745">
-          <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+        <state relative-caret-position="799">
+          <caret line="215" column="22" selection-start-line="215" selection-start-column="22" selection-end-line="215" selection-end-column="22" />
           <folding>
             <element signature="e#2082#2083#0" expanded="true" />
             <element signature="e#2119#2120#0" expanded="true" />
@@ -751,12 +737,6 @@
             <element signature="e#3290#3291#0" expanded="true" />
             <element signature="e#3471#3472#0" expanded="true" />
             <element signature="e#3504#3505#0" expanded="true" />
-            <element signature="e#3698#3699#0" expanded="true" />
-            <element signature="e#3725#3726#0" expanded="true" />
-            <element signature="e#3763#3764#0" expanded="true" />
-            <element signature="e#3790#3791#0" expanded="true" />
-            <element signature="e#3837#3838#0" expanded="true" />
-            <element signature="e#3864#3865#0" expanded="true" />
             <element signature="e#3913#3914#0" expanded="true" />
             <element signature="e#3940#3941#0" expanded="true" />
             <element signature="e#3986#3987#0" expanded="true" />

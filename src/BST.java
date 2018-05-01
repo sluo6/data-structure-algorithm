@@ -98,15 +98,25 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
         assert check();
     }
 
+    // Hibbard deletion. May cause imbalanced tree.
     private Node delete(Node x, Key key) {
         if (x == null) return null;
 
-        int cmp = key.compareTo(x.key);
+        int cmp = key.compareTo(x.key);    // search for key
         if (cmp < 0) x.left = delete(x.left, key);
         else if (cmp > 0) x.right = delete(x.right, key);
         else {
-            
+            if (x.right == null) return x.left; // no right child
+            if (x.left == null) return x.right; // no left child
+
+            // if both children are present, replace with successor
+            Node t = x;
+            x = min(t.right);
+            x.right = deleteMin(t.right);
+            x.left = t.left;
         }
+        x.size = size(x.left) + size(t.right) + 1;
+        return x;
     }
 
     /** Does this symbol table contain the given key?
@@ -145,21 +155,66 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
         else return x.size;
    }
 
+    /**
+     * Returns the smallest key in the symbol table.
+     *
+     * @return the smallest key in the symbol table
+     * @throws NoSuchElementException if the symbol table is empty
+     */
     @Override
     public Key min() {
-        return null;
+        if (isEmpty()) throw new NoSuchElementException("calls min() with empty symbol table");
+        return min(root).key;
     }
 
+    private Node min(Node x) {
+        if (x.left == null) return x;
+        else                return min(x.left);
+    }
+
+    /**
+     * Returns the largest key in the symbol table
+     *
+     * @return the largest key in the symbol table
+     * @throws NoSuchElementException if the symbol table is empty
+     */
     @Override
     public Key max() {
-        return null;
+        if (isEmpty()) throw new NoSuchElementException("calls max() with empty symbol table");
+        return max(root).key;
     }
 
+    private Node max(Node x) {
+        if (x.right == null) return x;
+        else                 return max(x.right);
+    }
+
+    /**
+     * Returns the largest key in the symbol table less than or equal to {@code key}.
+     *
+     * @param key the key
+     * @return the largest key in the symbol table less than or equal to {@code key}
+     * @throws NoSuchElementException if there is no such key
+     * @throws IllegalArgumentException if {@code key} is {@code null}
+     */
     @Override
     public Key floor(Key key) {
-        return null;
+        if (key == null) throw new IllegalArgumentException("argument to floor() is null");
+        if (isEmpty()) throw new NoSuchElementException("calls floor() with empty symbol table");
+        Node x = floor(root, key);
+        if (x == null) return null;
+        else return x.key;
     }
 
+    private Node floor(Node x, Key key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+        if (cmp == 0) return x;
+        if (cmp < 0) return floor(x.left, key);
+        Node t = floor(x.right, key);
+        if (t != null) return t;
+        else return x;
+    }
     @Override
     public Key ceiling(Key key) {
         return null;
