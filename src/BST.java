@@ -1,4 +1,6 @@
 import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by Shangwen on 2018/4/30.
@@ -331,18 +333,98 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
         return x;
      }
 
+    /**
+     * Returns the number of keys in the symbol table in the given range.
+     *
+     * @param lo minimum endpoint
+     * @param hi maximum endpoint
+     * @return the number of keys in the symbol table between {@code lo}
+     *         (inclusive) and {@code hi} (inclusive)
+     * @throws IllegalArgumentException if either {@code lo} or {@code hi}
+     *         is {@code null}
+     */
     @Override
     public int size(Key lo, Key hi) {
-        return 0;
+        if (lo == null) throw new IllegalArgumentException("first argument to size() is null");
+        if (hi == null) throw new IllegalArgumentException("second argument to size() is null");
+
+        if (lo.compareTo(hi) > 0) return 0;
+        if (contains(hi)) return rank(hi) - rank(lo) + 1;
+        else return rank(hi) - rank(lo);
     }
 
+    /**
+     * Returns all keys in the symbol table in the given range,
+     * as an {@code Iterable}.
+     *
+     * @param lo minimum endpoint
+     * @param hi maximum endpoint
+     * @return all keys in the symbol table between {@code lo}
+     *         (inclusive) and {@code hi} (inclusive)
+     * @throws IllegalArgumentException if either {@code hi} or {@code lo}
+     *         is {@code null}
+     */
     @Override
     public Iterable<Key> keys(Key lo, Key hi) {
-        return null;
+        if (lo == null) throw new IllegalArgumentException("first argument to keys() is null");
+        if (hi == null) throw new IllegalArgumentException("second argument to keys() is null");
+
+        Queue<Key> queue = new PriorityQueue<Key>();
+        keys(root, queue, lo, hi);
+        return queue;
     }
 
+    private void keys(Node x, Queue<Key> queue, Key lo, Key hi) {
+        if (x == null) return;
+        int cmplo = lo.compareTo(x.key);
+        int cmphi = hi.compareTo(x.key);
+        if (cmplo < 0) keys(x.left, queue, lo, hi);
+        if (cmplo <= 0 && cmphi >= 0) queue.add(x.key);
+        if (cmphi > 0) keys(x.right, queue, lo, hi);
+    }
+
+    /**
+     * Returns all keys in the symbol table as an {@code Iterable}.
+     * To iterate over all of the keys in the symbol table named {@code st},
+     * use the foreach notation: {@code for (Key key : st.key())}.
+     *
+     * @return all keys in the symbol table
+     */
     @Override
     public Iterable<Key> keys() {
-        return null;
+        if (isEmpty()) return new PriorityQueue<Key>();
+        return keys(min(), max());
+    }
+
+    /**
+     * Returns the height of the BST (for debugging).
+     *
+     * @return the height of the BST (a 1-node tree has height 0)
+     */
+    public int height() {
+        return height(root);
+    }
+    private int height(Node x) {
+        if (x == null) return -1;
+        return 1 + Math.max(height(x.left), height(x.right));
+    }
+
+    /**
+     * Returns the keys in the BST in level order (for debugging).
+     *
+     * @return the keys in the BST in level order traversal
+     */
+    public Iterable<Key> levelOrder() {
+        Queue<Key> keys = new PriorityQueue<Key>();
+        Queue<Node> queue = new PriorityQueue<Node>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node x = queue.poll();
+            if (x == null) continue;
+            keys.add(x.key);
+            queue.add(x.left);
+            queue.add(x.right);
+        }
+        return keys;
     }
 }
