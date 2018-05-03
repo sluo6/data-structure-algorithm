@@ -1,4 +1,4 @@
-/**
+package sluo.learn.algorithm; /**
  * Created by Shangwen on 2018/4/30.
  * Array implementation of binary search.
  * Code adapted from https://algs4.cs.princeton.edu/31elementary/BinarySearchST.java.html
@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class BinarySearchST<Key extends Comparable<Key>, Value> implements ST<Key, Value>{
+public class BinarySearchST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
     private static final int INIT_CAPACITY = 2;
     private Key[] keys;
     private Value[] vals;

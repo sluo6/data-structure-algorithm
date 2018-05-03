@@ -1,3 +1,5 @@
+package sluo.learn.algorithm;
+
 /**
  * Created by Shangwen on 2018/4/30.
  * Interface for implementation of tree data structure.
