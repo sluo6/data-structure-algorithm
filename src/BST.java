@@ -15,7 +15,7 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
             private Key key;
             private Value val;
             private Node left, right;
-            pprivate int size;    // number of nodes in subtree
+            private int size;    // number of nodes in subtree
 
             public Node(Key key, Value val, int size) {
                 this.key = key;
@@ -118,7 +118,7 @@ public class BST<Key extends Comparable<Key>, Value> implements ST<Key, Value> {
             x.right = deleteMin(t.right);
             x.left = t.left;
         }
-        x.size = size(x.left) + size(t.right) + 1;
+        x.size = size(x.left) + size(x.right) + 1;
         return x;
     }
 
